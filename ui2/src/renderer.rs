@@ -1,6 +1,5 @@
-pub mod ctx;
-pub mod egui;
-use ctx::WgpuCtx;
+
+use crate::ctx::WgpuCtx;
 
 use log::{debug, trace};
 use std::sync::Arc;
