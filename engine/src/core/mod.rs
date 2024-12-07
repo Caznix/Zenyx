@@ -1,3 +1,4 @@
+pub mod lang;
 pub mod renderer;
 pub mod repl;
 
