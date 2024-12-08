@@ -3,7 +3,8 @@
 use anyhow::Result;
 use log::LevelFilter;
 use plugin_api::plugin_imports::*;
-use plugin_api::{get_plugin, PluginManager};
+use plugin_api::{get_plugin, PluginManager, load_plugins, Plugin, iterate_plugins};
+use std::collections::HashMap;
 
 pub mod core;
 pub mod utils;
@@ -13,18 +14,17 @@ use utils::{logger::LOGGER, splash::print_splash};
 #[tokio::main]
 async fn main() -> Result<()> {
     // Load all plugins
+    let mut plugin_manager = plugin_api::PluginManager::new();
+    let plugins = plugin_manager.load_all();
+
+    // iterate_plugins!(plugins, test);
 
     log::set_logger(&*LOGGER).ok();
     log::set_max_level(LevelFilter::Off);
 
     print_splash();
     let mut plugin_manager = PluginManager::new();
-    let plugins = plugin_manager.load_all();
-    println!("Plugins loaded: {:?}", plugins);
 
-    // Get the player plugin
-    let player_lib = get_plugin!(player_lib, plugins);
-    player_lib.test();
 
     LOGGER.write_to_stdout();
 

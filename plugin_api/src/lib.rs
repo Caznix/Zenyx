@@ -16,6 +16,29 @@ pub struct PluginManager {
     plugins: HashMap<String, (Pluginstate, Plugin)>,
 }
 
+// Example usage:
+// iterate_plugins!(plugins, "player_lib", "test");
+// iterate_plugins!(plugins, "player_lib", "initialize", param1, param2);
+
+// Documentation
+/// Iterates over plugins and calls specified method on each plugin instance
+/// 
+/// # Arguments
+/// * `$plugins` - The plugins collection to iterate over
+/// * `$lib` - String literal specifying the library name
+/// * `$method` - String literal specifying the method to call
+/// * `$param` - (Optional) Parameters to pass to the method 
+#[macro_export]
+macro_rules! iterate_plugins {
+    ($plugins:expr, $method:ident $(, $param:expr)*) => {
+        $plugins.iter().for_each(|plugin| {
+            println!("Plugin: {}", plugin.0);
+            plugin.1.instance.$method($($param,)*);
+        });
+    };
+}
+
+
 #[macro_export]
 macro_rules! load_plugins {
     ($($plugin:ident),* $(,)?) => {
