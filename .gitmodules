@@ -1,0 +1,3 @@
+[submodule "Plugin-API"]
+	path = Plugin-API
+	url = https://github.com/Zenyx-Engine/Plugin-API
