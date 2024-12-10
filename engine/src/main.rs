@@ -1,8 +1,6 @@
 #![deny(clippy::unwrap_in_result)]
 use anyhow::Result;
 use log::LevelFilter;
-use plugin_api::plugin_imports::*;
-use plugin_api::{get_plugin, PluginManager};
 
 pub mod core;
 pub mod utils;
@@ -17,13 +15,6 @@ async fn main() -> Result<()> {
     log::set_max_level(LevelFilter::Off);
 
     print_splash();
-    let mut plugin_manager = PluginManager::new();
-    let plugins = plugin_manager.load_all();
-    println!("Plugins loaded: {:?}", plugins);
-
-    // Get the player plugin
-    let player_lib = get_plugin!(player_lib, plugins);
-    player_lib.test();
 
     LOGGER.write_to_stdout();
 

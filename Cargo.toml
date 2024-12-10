@@ -1,6 +1,6 @@
 [workspace]
 resolver = "2"
-members = ["engine", "subcrates/zephyr", "plugin_api"]
+members = ["engine", "subcrates/zephyr"]
 
 [profile.dev]
 rpath = false

@@ -19,5 +19,3 @@ tokio = { version = "1.41.1", features = ["macros", "rt", "rt-multi-thread"] }
 wgpu = "23.0.1"
 winit = "0.30.5"
 zephyr.workspace = true
-plugin_api = { path = "../plugin_api" }
-horizon-plugin-api = "0.1.13"
